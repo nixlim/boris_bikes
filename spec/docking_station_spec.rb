@@ -15,19 +15,27 @@ describe DockingStation do
     end
 
     it "should allow a bike to be docked" do
-      expect(docking_station).to respond_to(:dock)
+        expect(docking_station).to respond_to(:dock)
     end
 
     it "should respond to bike method" do
-      expect(docking_station).to respond_to(:bike)
+        expect(docking_station).to respond_to(:bike)
     end
 
     it "docks a bike" do
-      expect(docking_station.dock(bike)).to eq(bike)
+        expect(docking_station.dock(bike)).to eq(bike)
     end
 
     it "states what bike is docked" do
-      expect(docking_station.bike).to eq(bike)
+        expect(docking_station.bike).to eq(bike)
     end
 
+    it "release_bike raises an error when no bikes available" do
+        expect {docking_station.release_bike}.to raise_error
+    end
 end
+
+
+# docking_station.bike == nil
+#
+# unless docking_station.bike == @bike("No bikes available")
