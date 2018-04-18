@@ -10,7 +10,8 @@ describe DockingStation do
     end
 
     it "should release a working bike" do
-        expect(docking_station.release_bike).to be_an_instance_of(Bike)
+        subject.dock(Bike.new)
+        bike = subject.release_bike
         expect(bike).to be_working
     end
 
@@ -31,11 +32,6 @@ describe DockingStation do
     end
 
     it "release_bike raises an error when no bikes available" do
-        expect {docking_station.release_bike}.to raise_error
+        expect {subject.release_bike}.to raise_error(RuntimeError, "No Bikes")
     end
 end
-
-
-# docking_station.bike == nil
-#
-# unless docking_station.bike == @bike("No bikes available")
