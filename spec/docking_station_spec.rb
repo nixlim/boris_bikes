@@ -2,10 +2,8 @@ require 'docking_station'
 require 'bike'
 
 describe DockingStation do
-
     docking_station = DockingStation.new
-        bike = Bike.new
-
+    bike = Bike.new
 
     it "should respond to release_bike method" do
         expect(docking_station).to respond_to(:release_bike)
@@ -14,6 +12,22 @@ describe DockingStation do
     it "should release a working bike" do
         expect(docking_station.release_bike).to be_an_instance_of(Bike)
         expect(bike).to be_working
+    end
+
+    it "should allow a bike to be docked" do
+      expect(docking_station).to respond_to(:dock)
+    end
+
+    it "should respond to bike method" do
+      expect(docking_station).to respond_to(:bike)
+    end
+
+    it "docks a bike" do
+      expect(docking_station.dock(bike)).to eq(bike)
+    end
+
+    it "states what bike is docked" do
+      expect(docking_station.bike).to eq(bike)
     end
 
 end
