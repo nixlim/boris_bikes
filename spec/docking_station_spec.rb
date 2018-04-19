@@ -40,4 +40,8 @@ describe DockingStation do
         expect {subject.release_bike}.to raise_error(RuntimeError, "No Bikes")
     end
 
+    it "has a default capacity" do
+        expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+    end
+    
 end
