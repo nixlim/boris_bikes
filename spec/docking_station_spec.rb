@@ -19,16 +19,13 @@ describe DockingStation do
         expect(docking_station).to respond_to(:dock)
     end
 
-    it "should respond to bike method" do
-        expect(docking_station).to respond_to(:bike)
-    end
     describe '#dock' do
       it "docks a bike" do
-        expect(docking_station.dock(bike)).to eq(bike)
+        expect(docking_station.dock(bike)).to include(bike)
       end
 
       it 'raises an error when full' do
-        docking_station.dock(bike)
+        20.times {docking_station.dock(bike)}
         expect{docking_station.dock(bike)}.to raise_exception 'Docking station full'
       end
 
@@ -36,7 +33,7 @@ describe DockingStation do
 
     it "states what bike is docked" do
       docking_station.dock(bike)
-      expect(docking_station.bike).to eq(bike)
+      expect(docking_station.bikes).to include(bike)
     end
 
     it "release_bike raises an error when no bikes available" do
