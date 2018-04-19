@@ -1,7 +1,9 @@
 class Bike
 
+  attr_writer :broken
+
   def working?
-      true
+    @broken == true ? false : true
   end
 
 end
