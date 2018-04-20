@@ -12,13 +12,7 @@ class DockingStation
 
   def release_bike
     raise "No Bikes" if empty?
-    working_bike = @bikes.find{|bike| bike.working?}
-    if working_bike.nil?
-      raise "No working bikes"
-    else
-      @bikes.delete(working_bike)
-    end
-    # @bikes.pop
+    find_working_bike.nil? ? (raise "No working bikes") : @bikes.delete(find_working_bike)
   end
 
   def dock(bike)
@@ -34,6 +28,10 @@ class DockingStation
 
   def empty?
     @bikes.empty?
+  end
+
+  def find_working_bike
+    @bikes.find{|bike| bike.working?}
   end
 
 
